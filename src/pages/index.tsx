@@ -19,19 +19,19 @@ export const ButtonLink = ({ href, text }: ButtonLinkProps) => {
 export default function Home() {
   const router = useRouter()
   return (
-      <div className={styles.container}>
+      <div className={styles.homeContainer}>
           <h1>Práctica para exámen de radioaficionado novicio</h1>
           <h2>Selecciona una opción de lo que desees practicar:</h2>
-          <div className={styles.container}>
+          <div className={styles.boxedContainer}>
               <h3>15 preguntas aleatorias del banco de preguntas de la reglamentación y otras 15 preguntas técnicas.</h3>
               <ButtonLink href={'/exam'} text={'Simulacro de examen'} />
           </div>
-          <div className={styles.container}>
+          <div className={styles.boxedContainer}>
               <h3>Contesta todas las preguntas del banco de preguntas de reglamentación</h3>
               <ButtonLink href={'/finite/reglamentacion'} text={'Banco de preguntas Reglamentación'} />
           </div>
 
-          <div className={styles.container}>
+          <div className={styles.boxedContainer}>
               <h3>Contesta todas las preguntas del banco de preguntas técnica</h3>
               <ButtonLink href={'/finite/tecnica'} text={'Banco de preguntas Técnica'} />
           </div>

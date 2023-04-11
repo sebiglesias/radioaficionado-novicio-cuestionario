@@ -4,6 +4,28 @@
   justify-content: space-around;
 }
 
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: space-around;
+  padding: 50px;
+  height: 100vh;
+}
+
+.boxedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+  background-color: #fff;
+}
+
 .container {
   display: flex;
   flex-direction: column;
