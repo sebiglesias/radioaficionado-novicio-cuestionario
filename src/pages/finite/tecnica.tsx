@@ -4,14 +4,14 @@ import {parseCsv} from "lib/parseCsv";
 import styles from '../../styles/Home.module.css';
 import Questionnaire from "@/component/questionnaire";
 import {ButtonLink} from "@/pages";
+import {shuffleArray} from "@/pages/finite/reglamentacion";
 
 export default function Tecnica() {
     const [questions, setQuestions] = useState<Question[]>([]);
 
     async function loadQuestions() {
-        const questions = await parseCsv("/tecnica.csv");
         // randomize order of questions
-        setQuestions(questions.sort(() => Math.random() - 0.5));
+        setQuestions(shuffleArray<Question>(await parseCsv("/tecnica.csv")))
     }
 
     return (

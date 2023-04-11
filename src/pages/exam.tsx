@@ -4,6 +4,7 @@ import {parseCsv} from "lib/parseCsv";
 import styles from '../styles/Home.module.css';
 import Questionnaire from "@/component/questionnaire";
 import {ButtonLink} from "@/pages/index";
+import {shuffleArray} from "@/pages/finite/reglamentacion";
 
 export default function Exam() {
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -12,8 +13,8 @@ export default function Exam() {
         const technicalQ = await parseCsv("/tecnica.csv");
         const ruleQ = await parseCsv("/tecnica.csv");
         // randomize order of questions
-        setQuestions([...ruleQ.sort(() => Math.random() - 0.5).splice(0, 15),
-            ...technicalQ.sort(() => Math.random() - 0.5).splice(0, 15)])
+        setQuestions([...shuffleArray(ruleQ).splice(0, 15),
+            ...shuffleArray(technicalQ).splice(0, 15)])
     }
     return (
         <div className={styles.container}>
