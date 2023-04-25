@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css';
 import Questionnaire from "@/component/questionnaire";
 import {ButtonLink} from "@/pages/index";
 import {shuffleArray} from "@/pages/finite/reglamentacion";
-
+import classes from '@/styles/Home.module.css'
 export default function Exam() {
     const [questions, setQuestions] = useState<Question[]>([]);
 
@@ -20,8 +20,8 @@ export default function Exam() {
         <div className={styles.container}>
             <ButtonLink href={'/'} text={'Volver a menu inicial'} />
             {!questions.length && <div className={styles.container}>
-                <h1>Simulacro de Examen</h1>
-                <h2>Se seleccionarán 15 preguntas del banco de preguntas de la reglamentación y 15 del técnico</h2>
+                <h1 className={classes.title}>Simulacro de Examen</h1>
+                <p>Se seleccionarán 15 preguntas del banco de preguntas de la reglamentación y 15 del técnico</p>
                 <button className={styles.button} onClick={loadQuestions}>Comenzar</button>
             </div>}
             {!!questions.length && <Questionnaire rawQuestions={questions} withResult={true} /> }

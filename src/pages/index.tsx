@@ -20,8 +20,8 @@ export default function Home() {
   const router = useRouter()
   return (
       <div className={styles.homeContainer}>
-          <h1>Práctica para exámen de radioaficionado novicio</h1>
-          <h2>Selecciona una opción de lo que desees practicar:</h2>
+          <h1 className={styles.title}>Práctica para exámen de radioaficionado novicio</h1>
+          <h4 className={styles.title}>Selecciona una opción de lo que desees practicar:</h4>
           <div className={styles.boxedContainer}>
               <h3>15 preguntas aleatorias del banco de preguntas de la reglamentación y otras 15 preguntas técnicas.</h3>
               <ButtonLink href={'/exam'} text={'Simulacro de examen'} />

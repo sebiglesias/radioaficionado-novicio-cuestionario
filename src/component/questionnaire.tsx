@@ -71,22 +71,23 @@ export default function Questionnaire({rawQuestions, withResult}: QuestionnaireP
     }
 
     function isCorrect(index: number) {
-        return userAnswers[index] !== null && questions[currentQuestionIndex].correctAnswer.sort() === userAnswers[index]?.sort()
+        return userAnswers[index] !== null && userAnswers[index] !== undefined && questions[currentQuestionIndex].correctAnswer.sort().toString() === userAnswers[index]?.sort().toString()
     }
 
     function buttonClass(index: number) {
-        // The answer is selected
+        // The answer has been selected
         if (selectedAnswerIndexes !== null && selectedAnswerIndexes.indexOf(index) !== -1) {
             // the user has confirmed
             if (confirm) {
-                // the answer can either be correct or incorrect
-                return questions[currentQuestionIndex].correctAnswer.indexOf(index) !== -1 ? styles.correct : styles.incorrect
+                // the answer can be correct, partially correct or incorrect
+                return questions[currentQuestionIndex].correctAnswer.indexOf(index) !== -1 ?
+                    isCorrect(currentQuestionIndex) ? styles.correct : styles.partiallyCorrect : styles.incorrect
             } else {
                 // the user has not confirmed but has selected it
                 return styles.checked
             }
         } else {
-            // the answer is not selected
+            // an answer is not selected
             if (confirm) {
                 return questions[currentQuestionIndex].correctAnswer.indexOf(index) !== -1 ? styles.correct : styles.gray
             } else {
@@ -100,12 +101,12 @@ export default function Questionnaire({rawQuestions, withResult}: QuestionnaireP
             {!questions.length && <button onClick={loadQuestions}>Start Quiz</button>}
             {!!questions.length && (
                 <>
+                    <h1>{currentQuestionIndex + 1} / {questions.length}</h1>
                     <h1 className={styles.title}>{questions[currentQuestionIndex].question}</h1>
                     {selectedAnswerIndexes !== null && isCorrect(currentQuestionIndex) && (
                         <h2 className={styles.questionNumber}>
                             Has contestado correctamente
-                        </h2>
-                    )
+                        </h2>)
                     }
                     <div className={styles.answers}>
                         {questions[currentQuestionIndex].answers.map((answer, index) => (
